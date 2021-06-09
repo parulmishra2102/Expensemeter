@@ -1,9 +1,11 @@
 import logo from './logo.svg';
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import ExpenseItem from './component/Expenses/ExpenseItem';
 import Card from './component/UIFolder/Card';
-import NewExpenses from './component/InputItem/NewExpenses'
+import NewExpenses from './component/InputItem/NewExpenses';
+import ExpenseFilter from './component/Expenses/ExpenseFilter'
+
 function App() {
   const expenses = [
     {
@@ -26,13 +28,37 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ];
+  const[filteredyear,setfilteredyear]=useState('2020')
+
+  const recievedDataFromNewExpense=(data)=>{
+
+    console.log(data)
+    
+}
+const changeFilterHandler=(selectedyear)=>{
+  setfilteredyear(selectedyear)
+
+  // console.log('app' + selectedyear)
+
+}
 
   return (
     <div>
-      
+      <div>
+       
+      </div>
       <Card className="test">
+      <ExpenseFilter   selected={filteredyear} filterchanger={changeFilterHandler}></ExpenseFilter>
         {/* <NewExpenseItem></NewExpenseItem> */}
-        <NewExpenses></NewExpenses>
+        <NewExpenses recievedData={recievedDataFromNewExpense}></NewExpenses>
+        {/* {expenses &&
+          expenses.map(function (item) {
+            return <ExpenseItem key={item.title}
+            title={item.title}
+            amount={item.amount}
+            date={item.date}
+          ></ExpenseItem>;
+          })} */}
         <ExpenseItem
           title={expenses[0].title}
           amount={expenses[0].amount}
@@ -48,13 +74,12 @@ function App() {
           amount={expenses[2].amount}
           date={expenses[2].date}
         ></ExpenseItem>
-
         <ExpenseItem
           title={expenses[3].title}
           amount={expenses[3].amount}
           date={expenses[3].date}
         ></ExpenseItem>
-    </Card>
+      </Card>
     </div>
   );
 }

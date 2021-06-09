@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import './ExpenseItem.css';
 import ExpenseDate from './ExpenseDate';
 // import Card from './component/UIFolder/Card';
+import ExpenseFilter from './ExpenseFilter'
 function Expenseitem(props) {
   const [title,updateTitle]=useState(props.title);
 
